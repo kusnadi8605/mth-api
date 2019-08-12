@@ -9,7 +9,9 @@
 - go get github.com/dgrijalva/jwt-go
 
 ## Create Database mysql
+```
 create database mth
+```
 
 ## Create Table mtr_product
 ```
