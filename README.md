@@ -1,4 +1,4 @@
-# mth-api using redis and mysql
+# mth-api using Redis, mysql and JWT Token
 
 
 ### Database configuration, redis, port, etc in the config.yml file
