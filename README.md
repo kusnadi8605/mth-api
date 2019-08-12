@@ -42,7 +42,7 @@ updatedBy varchar(60)
 );
 ```
 
-## Insert user
+## Insert User 
 ```
 insert into mtr_user(userName,userPassword,createdDate,createdBy)
 VALUES('test',sha2('test123',256),now(),'system')
@@ -60,7 +60,7 @@ curl -X POST \
 }'
 ```
 
-## response token
+## Response
 ```
 {
     "responseCode": "000",
