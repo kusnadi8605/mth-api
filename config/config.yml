@@ -1,0 +1,20 @@
+#port where service shall LISTEN for connection
+listenPort: :3000
+
+#database configuration
+dbType: mysql
+dbUrl: root:@tcp(127.0.0.1:3306)/mth
+
+#redis configuration
+redisURL: 127.0.0.1:6379
+redisKEY: PROD
+#expire 20 second
+redisEXP: 20 
+
+#jwt
+jwtKEY: SecretKey@2019
+
+# logging
+log:
+  filename: logs/mt_product_logs_
+  level: DEBUG
