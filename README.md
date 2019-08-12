@@ -12,6 +12,7 @@
 create database mth
 
 ## Create Table mtr_product
+```
 create table mtr_product(
   productId int not null PRIMARY key AUTO_INCREMENT,
   sku varchar(30),
@@ -25,8 +26,9 @@ create table mtr_product(
   updatedBy varchar(60),
   UNIQUE(sku)
 );
-
+```
 ## Create Table mtr_user 
+```
 create table mtr_user(
 userId int not null PRIMARY key AUTO_INCREMENT,
 userName varchar(60),
@@ -36,10 +38,13 @@ createdBy varchar(60),
 updatedDate timestamp,
 updatedBy varchar(60)
 );
+```
 
 ## Insert user
+```
 insert into mtr_user(userName,userPassword,createdDate,createdBy)
 VALUES('test',sha2('test123',256),now(),'system')
+```
 
 # GetToken (token is used as authentication for api requests)
 ## Request Token 
