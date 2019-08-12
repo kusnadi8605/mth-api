@@ -21,6 +21,7 @@ func CreateHandler(conn *conf.Connection) http.HandlerFunc {
 
 		body, err := ioutil.ReadAll(req.Body)
 		json.Unmarshal(body, &prodRequest)
+		conf.Logf("Request Product : %v", prodRequest)
 
 		//validation
 		v := validator.New()
@@ -48,14 +49,14 @@ func CreateHandler(conn *conf.Connection) http.HandlerFunc {
 			prodResponse.ResponseCode = "501"
 			prodResponse.ResponseDesc = err.Error()
 			json.NewEncoder(w).Encode(prodResponse)
-			conf.Logf("Response Product : %v", prodResponse.ResponseDesc)
+			conf.Logf("Response Product : %v", prodResponse)
 			return
 		}
 
 		prodResponse.ResponseCode = "000"
 		prodResponse.ResponseDesc = "Success"
 		json.NewEncoder(w).Encode(prodResponse)
-		conf.Logf("Response Product : %v", prodResponse.ResponseDesc)
+		conf.Logf("Response Product : %v", prodResponse)
 
 	}
 }
@@ -86,7 +87,7 @@ func UpdateHandler(conn *conf.Connection) http.HandlerFunc {
 			prodResponse.ResponseCode = "500"
 			prodResponse.ResponseDesc = err.Error()
 			json.NewEncoder(w).Encode(prodResponse)
-			conf.Logf("Decode Product : %s", err)
+			conf.Logf("Response Product : %v", prodResponse)
 			return
 		}
 
@@ -97,14 +98,14 @@ func UpdateHandler(conn *conf.Connection) http.HandlerFunc {
 			prodResponse.ResponseCode = "501"
 			prodResponse.ResponseDesc = err.Error()
 			json.NewEncoder(w).Encode(prodResponse)
-			conf.Logf("Response Product : %v", prodResponse.ResponseDesc)
+			conf.Logf("Response Product : %v", prodResponse)
 			return
 		}
 
 		prodResponse.ResponseCode = "000"
 		prodResponse.ResponseDesc = "Success"
 		json.NewEncoder(w).Encode(prodResponse)
-		conf.Logf("Response Product : %v", prodResponse.ResponseDesc)
+		conf.Logf("Response Product : %v", prodResponse)
 
 	}
 }
@@ -129,8 +130,7 @@ func DetailHandler(conn *conf.Connection) http.HandlerFunc {
 		if err != nil {
 			prodResponse.ResponseCode = "500"
 			prodResponse.ResponseDesc = err.Error()
-			json.NewEncoder(w).Encode(prodResponse)
-			conf.Logf("Decode Product : %s", err)
+			conf.Logf("Response Product : %v", prodResponse)
 			return
 		}
 
@@ -143,7 +143,7 @@ func DetailHandler(conn *conf.Connection) http.HandlerFunc {
 			prodResponse.ResponseDesc = err.Error()
 			prodResponse.Payload = val
 			json.NewEncoder(w).Encode(prodResponse)
-			conf.Logf("Response Product : %v", prodResponse.ResponseDesc)
+			conf.Logf("Response Product : %v", prodResponse)
 			return
 		}
 
@@ -151,7 +151,7 @@ func DetailHandler(conn *conf.Connection) http.HandlerFunc {
 		prodResponse.ResponseDesc = "Success"
 		prodResponse.Payload = val
 		json.NewEncoder(w).Encode(prodResponse)
-		conf.Logf("Response Product : %v", prodResponse.ResponseDesc)
+		conf.Logf("Response Product : %v", prodResponse)
 
 	}
 }
@@ -177,7 +177,7 @@ func DeleteHandler(conn *conf.Connection) http.HandlerFunc {
 			prodResponse.ResponseCode = "500"
 			prodResponse.ResponseDesc = err.Error()
 			json.NewEncoder(w).Encode(prodResponse)
-			conf.Logf("Decode Product : %s", err)
+			conf.Logf("Response Product : %v", prodResponse)
 			return
 		}
 
@@ -189,14 +189,14 @@ func DeleteHandler(conn *conf.Connection) http.HandlerFunc {
 			prodResponse.ResponseCode = "501"
 			prodResponse.ResponseDesc = err.Error()
 			json.NewEncoder(w).Encode(prodResponse)
-			conf.Logf("Response Product : %v", prodResponse.ResponseDesc)
+			conf.Logf("Response Product : %v", prodResponse)
 			return
 		}
 
 		prodResponse.ResponseCode = "000"
 		prodResponse.ResponseDesc = "Success"
 		json.NewEncoder(w).Encode(prodResponse)
-		conf.Logf("Response Product : %v", prodResponse.ResponseDesc)
+		conf.Logf("Response Product : %v", prodResponse)
 
 	}
 }
@@ -215,7 +215,7 @@ func ListHandler(conn *conf.Connection) http.HandlerFunc {
 			prodResponse.ResponseDesc = err.Error()
 			prodResponse.Payload = val
 			json.NewEncoder(w).Encode(prodResponse)
-			conf.Logf("Response Product : %v", prodResponse.ResponseDesc)
+			conf.Logf("Response Product : %v", prodResponse)
 			return
 		}
 
@@ -223,7 +223,7 @@ func ListHandler(conn *conf.Connection) http.HandlerFunc {
 		prodResponse.ResponseDesc = "Success"
 		prodResponse.Payload = val
 		json.NewEncoder(w).Encode(prodResponse)
-		conf.Logf("Response Product : %v", prodResponse.ResponseDesc)
+		conf.Logf("Response Product : %v", prodResponse)
 
 	}
 }

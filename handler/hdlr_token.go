@@ -21,11 +21,14 @@ func TokenHandler(conn *conf.Connection) http.HandlerFunc {
 
 		body, err := ioutil.ReadAll(req.Body)
 		err = json.Unmarshal(body, &reqToken)
+
+		conf.Logf("Request Token : %s", reqToken)
+
 		if err != nil {
 			TokenResponse.ResponseCode = "500"
 			TokenResponse.ResponseDesc = err.Error()
 			json.NewEncoder(w).Encode(TokenResponse)
-			conf.Logf("Response GetToken : %s", TokenResponse.ResponseDesc)
+			conf.Logf("Response GetToken : %s", TokenResponse)
 			return
 		}
 
@@ -38,7 +41,7 @@ func TokenHandler(conn *conf.Connection) http.HandlerFunc {
 			TokenResponse.ResponseCode = "501"
 			TokenResponse.ResponseDesc = err.Error()
 			json.NewEncoder(w).Encode(TokenResponse)
-			conf.Logf("Response GetToken : %s", TokenResponse.ResponseDesc)
+			conf.Logf("Response GetToken : %s", TokenResponse)
 			return
 		}
 
@@ -46,14 +49,14 @@ func TokenHandler(conn *conf.Connection) http.HandlerFunc {
 			TokenResponse.ResponseCode = "501"
 			TokenResponse.ResponseDesc = "data not found"
 			json.NewEncoder(w).Encode(TokenResponse)
-			conf.Logf("Response GetToken : %s", TokenResponse.ResponseDesc)
+			conf.Logf("Response GetToken : %s", TokenResponse)
 			return
 		}
 
 		TokenResponse.ResponseCode = "000"
 		TokenResponse.ResponseDesc = "Success"
 		TokenResponse.Payload = Token
-		conf.Logf("Response GetToken : %s", TokenResponse.ResponseDesc)
+		conf.Logf("Response GetToken : %s", TokenResponse)
 		json.NewEncoder(w).Encode(TokenResponse)
 	}
 }
