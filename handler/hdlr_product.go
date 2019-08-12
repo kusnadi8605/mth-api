@@ -113,16 +113,16 @@ func UpdateHandler(conn *conf.Connection) http.HandlerFunc {
 func DetailHandler(conn *conf.Connection) http.HandlerFunc {
 	return func(w http.ResponseWriter, req *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
-		var prodRequest dts.ProductReq
+		var actRequest dts.ProductAct
 		var prodResponse dts.ProductResponse
 
 		body, err := ioutil.ReadAll(req.Body)
-		json.Unmarshal(body, &prodRequest)
+		json.Unmarshal(body, &actRequest)
 
 		//validation
 		v := validator.New()
-		prods := &dts.ProductReq{
-			SKU: prodRequest.SKU,
+		prods := &dts.ProductAct{
+			SKU: actRequest.SKU,
 		}
 		err = v.Struct(prods)
 
@@ -134,7 +134,7 @@ func DetailHandler(conn *conf.Connection) http.HandlerFunc {
 			return
 		}
 
-		sku := prodRequest.SKU
+		sku := actRequest.SKU
 		val, err := mdl.Detail(conn, sku)
 
 		if err != nil {
@@ -160,21 +160,16 @@ func DetailHandler(conn *conf.Connection) http.HandlerFunc {
 func DeleteHandler(conn *conf.Connection) http.HandlerFunc {
 	return func(w http.ResponseWriter, req *http.Request) {
 		w.Header().Set("Content-Type", "application/json")
-		var prodRequest dts.ProductReq
+		var prodAct dts.ProductAct
 		var prodResponse dts.ProductResponse
 
 		body, err := ioutil.ReadAll(req.Body)
-		json.Unmarshal(body, &prodRequest)
+		json.Unmarshal(body, &prodAct)
 
 		//validation
 		v := validator.New()
-		prods := &dts.ProductReq{
-			SKU:         prodRequest.SKU,
-			ProductName: prodRequest.ProductName,
-			ProductDesc: prodRequest.ProductDesc,
-			Quantity:    prodRequest.Quantity,
-			Price:       prodRequest.Price,
-			UserID:      prodRequest.UserID,
+		prods := &dts.ProductAct{
+			SKU: prodAct.SKU,
 		}
 
 		err = v.Struct(prods)
@@ -186,7 +181,7 @@ func DeleteHandler(conn *conf.Connection) http.HandlerFunc {
 			return
 		}
 
-		sku := prodRequest.SKU
+		sku := prodAct.SKU
 		err = mdl.Delete(conn, sku)
 
 		if err != nil {

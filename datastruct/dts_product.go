@@ -24,6 +24,11 @@ type ProductReq struct {
 	UserID      string  `json:"userId" validate:"required"`
 }
 
+//ProductAct for detail & delete
+type ProductAct struct {
+	SKU string `json:"sku" validate:"required"`
+}
+
 //ProductResponse data
 type ProductResponse struct {
 	ResponseCode string    `json:"responseCode"`
